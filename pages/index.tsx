@@ -1,3 +1,5 @@
+import Layout from "../src/components/layout";
+
 export default function Home() {
-  return <div>Halo</div>;
+  return <Layout>a</Layout>;
 }
