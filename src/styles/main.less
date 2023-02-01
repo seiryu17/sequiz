@@ -1,4 +1,4 @@
-@import "antd/dist/reset.css";
+@import "~antd/dist/antd.less";
 @import "antd.less";
 @import "./components/layout.less";
 
@@ -12,6 +12,10 @@ body {
 
 .w-100 {
   width: 100%;
+}
+
+.use-pointer {
+  cursor: pointer;
 }
 
 .make-space(@name, @value) {
@@ -78,3 +82,14 @@ body {
 .make-space(@name: 8, @value:8);
 .make-space(@name: 9, @value:9);
 .make-space(@name: 12, @value:12);
+
+@borders-radius: 2, 4, 8, 12, 20;
+each(@borders-radius, {
+  .border-radius-@{value} {
+    border-radius: ~"@{value}px" !important;
+  }
+});
+
+.text-center {
+  text-align: center;
+}

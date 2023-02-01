@@ -20,7 +20,6 @@ const MENUS = [
 const Layout = (props: IProps) => {
   const { children } = props;
   const mq = useBreakpoint();
-  console.log(mq);
   return (
     <Row className="header" align={"middle"} justify="space-between">
       <Col span={mq.lg ? 8 : 4}>
@@ -36,7 +35,7 @@ const Layout = (props: IProps) => {
           <Row className={mq.lg ? "mr-12" : "mr-4"} gutter={mq.lg ? 32 : 16}>
             {MENUS.map((x, index) => (
               <Col key={index} span={8}>
-                <Typography.Title level={mq.lg ? 4 : 5}>
+                <Typography.Title className="menu-title" level={mq.lg ? 4 : 5}>
                   {x.title}
                 </Typography.Title>
               </Col>
@@ -51,6 +50,7 @@ const Layout = (props: IProps) => {
       ) : (
         "as"
       )}
+      <main className="ph-12">{children}</main>
     </Row>
   );
 };

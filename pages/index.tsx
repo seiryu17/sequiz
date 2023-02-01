@@ -1,5 +1,11 @@
+import ArticleItem from "@/src/components/article/item";
+import ArticleList from "@/src/components/article/list";
 import Layout from "../src/components/layout";
 
 export default function Home() {
-  return <Layout>a</Layout>;
+  return (
+    <Layout>
+      <ArticleList />
+    </Layout>
+  );
 }
