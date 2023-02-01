@@ -1,4 +1,3 @@
-import ArticleItem from "@/src/components/article/item";
 import ArticleList from "@/src/components/article/list";
 import Layout from "../src/components/layout";
 

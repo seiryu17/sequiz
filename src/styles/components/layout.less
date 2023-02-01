@@ -1,9 +1,30 @@
 .header {
   &:extend(.ph-2);
   &:extend(.pv-2);
+
   .logo {
     width: auto;
   }
+
+  @media (min-width: 576px) {
+    .logo {
+      height: auto;
+      height: 125px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .logo {
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .logo {
+      height: unset;
+    }
+  }
+
   .menu-title:hover {
     color: #ff6b01;
     &:extend(.use-pointer);
