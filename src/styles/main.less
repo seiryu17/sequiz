@@ -10,14 +10,6 @@ body {
   height: 100%;
 }
 
-.w-100 {
-  width: 100%;
-}
-
-.use-pointer {
-  cursor: pointer;
-}
-
 .make-space(@name, @value) {
   .p-@{name} {
     padding: ~"calc(@{value} * @{padding-size})" !important;
@@ -81,7 +73,9 @@ body {
 .make-space(@name: 7, @value:7);
 .make-space(@name: 8, @value:8);
 .make-space(@name: 9, @value:9);
+.make-space(@name: 10, @value:10);
 .make-space(@name: 12, @value:12);
+.make-space(@name: 14, @value:14);
 
 @borders-radius: 2, 4, 8, 12, 20;
 each(@borders-radius, {
@@ -89,6 +83,50 @@ each(@borders-radius, {
     border-radius: ~"@{value}px" !important;
   }
 });
+
+/*
+ * color pallete
+ */
+@colors: {
+  black: @black;
+  white: @white;
+  grey: @grey;
+  light-grey: @light-grey;
+  orange: @orange;
+};
+
+each(@colors, {
+  .bg-@{key} {
+    background: @value !important;
+  }
+});
+
+each(@colors, {
+  .text-color-@{key} {
+    color: @value !important;
+  }
+});
+
+each(@colors, {
+  .border-@{key} {
+    border-color: @value !important;
+  }
+});
+
+@sizes: 8, 12, 16, 18, 32, 48, 60;
+each(@sizes, {
+  .text-size-@{value} {
+    font-size: ~"@{value}px" !important;
+  }
+});
+
+.w-100 {
+  width: 100%;
+}
+
+.use-pointer {
+  cursor: pointer;
+}
 
 .text-center {
   text-align: center;

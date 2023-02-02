@@ -1,7 +1,12 @@
 import { Col, Image, Row, Typography } from "antd";
 import React from "react";
 
-const ArticleItem = () => {
+interface IProps {
+  color: string;
+}
+
+const ArticleItem = (props: IProps) => {
+  const { color } = props;
   return (
     <Row gutter={[16, 16]} justify="center">
       <Col>
@@ -12,15 +17,15 @@ const ArticleItem = () => {
         />
       </Col>
       <Col
-        className="ph-1 border-radius-20"
-        style={{ border: "1px solid black" }}
+        className={`ph-1 border-radius-20 border-${color}`}
+        style={{ border: `1px solid` }}
       >
-        <Typography.Text>
+        <Typography.Text className={`text-color-${color}`}>
           BY <strong>CHRISOPER JOHNSON</strong>
         </Typography.Text>
       </Col>
       <Col span={24} className="text-center ph-4">
-        <Typography.Title level={3}>
+        <Typography.Title className={`text-color-${color}`} level={3}>
           10 Simple and Delicious Ways to Cook with Quinoa
         </Typography.Title>
       </Col>
