@@ -3,25 +3,18 @@ import React from "react";
 import { Grid, Col, Typography, Image } from "antd";
 import ASSET from "@/src/constant/assets";
 import ArticleList from "../article/list";
+import MENUS from "../../../src/constant/categories.json";
+import { useRouter } from "next/router";
 const { useBreakpoint } = Grid;
 
 interface IProps {
   children: React.ReactNode;
 }
 
-const MENUS = [
-  { title: "All Articles" },
-  { title: "Fashion & Beauty" },
-  { title: "Film" },
-  { title: "Food & Drink" },
-  { title: "Travel" },
-  { title: "Business & Work" },
-];
-
 const Layout = (props: IProps) => {
   const { children } = props;
   const mq = useBreakpoint();
-  console.log(mq);
+  const router = useRouter();
   return (
     <>
       <Row className="header" align={"middle"} justify="space-between">
@@ -36,9 +29,19 @@ const Layout = (props: IProps) => {
         {!mq.xs ? (
           <Col span={mq.lg ? 16 : 20}>
             <Row className={mq.lg ? "mr-10" : "mr-2"} gutter={mq.lg ? 32 : 16}>
-              {MENUS.map((x, index) => (
+              <Col span={8}>
+                <Typography.Title
+                  onClick={() => router.push("/")}
+                  className="menu-title"
+                  level={mq.lg ? 4 : 5}
+                >
+                  All Articles
+                </Typography.Title>
+              </Col>
+              {MENUS.data.map((x, index) => (
                 <Col key={index} span={8}>
                   <Typography.Title
+                    onClick={() => router.push(`?filter=${x.id}`)}
                     className="menu-title"
                     level={mq.lg ? 4 : 5}
                   >
@@ -60,9 +63,13 @@ const Layout = (props: IProps) => {
       <main className={mq.xs ? "p-4" : mq.lg ? "ph-14" : "ph-8"}>
         {children}
       </main>
-      <Row className="bg-black p-6 mt-6">
+      <Row className={`bg-black ${mq.xs ? "p-4" : "p-6"}  mt-6`}>
         <Col span={24} className="text-center mb-2">
-          <Typography.Title className="text-color-white text-size-60 m-0">
+          <Typography.Title
+            className={`text-color-white ${
+              mq.xs ? "text-size-36" : "text-size-60"
+            }  m-0`}
+          >
             Empowering Minds
           </Typography.Title>
         </Col>
