@@ -1,6 +1,7 @@
 import IArticle from "@/src/interfaces/models/article";
 import { Col, Row, Typography } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
 
 interface IProps {
@@ -10,8 +11,14 @@ interface IProps {
 
 const ArticleItem = (props: IProps) => {
   const { color, item } = props;
+  const router = useRouter();
   return (
-    <Row gutter={[16, 16]} justify="center">
+    <Row
+      gutter={[16, 16]}
+      justify="center"
+      className="use-pointer"
+      onClick={() => router.push(`/article/${item.id}`)}
+    >
       <Col>
         <div
           style={{
