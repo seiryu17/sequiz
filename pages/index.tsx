@@ -10,9 +10,9 @@ export default function Home() {
   const filterId = router.query?.filter;
   const data = ARTICLES.data.filter((x) =>
     filterId
-      ? x.is_featured === false &&
+      ? !x.is_featured &&
         x.categories.id === parseInt((filterId as string) || "")
-      : x.is_featured === false
+      : !x.is_featured
   );
   data.sort(
     (a, b) =>

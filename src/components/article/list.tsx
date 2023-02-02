@@ -6,7 +6,7 @@ const { useBreakpoint } = Grid;
 
 interface IProps {
   footer?: boolean;
-  list?: IArticle[];
+  list: IArticle[];
   hasNext?: boolean;
   onLoadMore?: () => void;
 }

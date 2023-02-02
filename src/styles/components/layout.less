@@ -25,8 +25,13 @@
     }
   }
 
-  .menu-title:hover {
-    &:extend(.text-color-orange);
-    &:extend(.use-pointer);
+  .menu-title {
+    &.active {
+      &:extend(.text-color-orange);
+    }
+    &:hover {
+      &:extend(.text-color-orange);
+      &:extend(.use-pointer);
+    }
   }
 }

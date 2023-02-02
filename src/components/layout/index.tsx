@@ -1,10 +1,12 @@
 import { Row } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Col, Typography, Image } from "antd";
 import ASSET from "@/src/constant/assets";
 import ArticleList from "../article/list";
 import MENUS from "../../../src/constant/categories.json";
 import { useRouter } from "next/router";
+import ARTICLES from "@/src/constant/articles.json";
+
 const { useBreakpoint } = Grid;
 
 interface IProps {
@@ -13,8 +15,11 @@ interface IProps {
 
 const Layout = (props: IProps) => {
   const { children } = props;
+  const [isActive, setIsActive] = useState();
   const mq = useBreakpoint();
   const router = useRouter();
+  const filterId = parseInt(router.query.filter as string);
+  const data = ARTICLES.data.filter((x) => x.is_featured).slice(0, 3);
   return (
     <>
       <Row className="header" align={"middle"} justify="space-between">
@@ -32,7 +37,7 @@ const Layout = (props: IProps) => {
               <Col span={8}>
                 <Typography.Title
                   onClick={() => router.push("/")}
-                  className="menu-title"
+                  className={`menu-title ${!filterId ? "active" : ""}`}
                   level={mq.lg ? 4 : 5}
                 >
                   All Articles
@@ -42,7 +47,9 @@ const Layout = (props: IProps) => {
                 <Col key={index} span={8}>
                   <Typography.Title
                     onClick={() => router.push(`?filter=${x.id}`)}
-                    className="menu-title"
+                    className={`menu-title ${
+                      filterId === x.id ? "active" : ""
+                    }`}
                     level={mq.lg ? 4 : 5}
                   >
                     {x.title}
@@ -79,7 +86,7 @@ const Layout = (props: IProps) => {
           </Typography.Title>
         </Col>
         <Col className="text-center mt-4">
-          <ArticleList footer />
+          <ArticleList footer list={data} />
         </Col>
       </Row>
       <Row
