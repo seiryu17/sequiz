@@ -24,14 +24,14 @@
       height: unset;
     }
   }
+}
 
-  .menu-title {
-    &.active {
-      &:extend(.text-color-orange);
-    }
-    &:hover {
-      &:extend(.text-color-orange);
-      &:extend(.use-pointer);
-    }
+.menu-title {
+  &:extend(.use-pointer);
+  &.active {
+    &:extend(.text-color-orange);
+  }
+  &:hover {
+    &:extend(.text-color-orange);
   }
 }

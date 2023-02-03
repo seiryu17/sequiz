@@ -28,8 +28,7 @@ const ArticleItem = (props: IProps) => {
           }}
         >
           <Image
-            sizes="(max-width: 576px) 100vw,
-            50vw"
+            sizes="100vw"
             alt="article-image"
             className="border-radius-12 article-image"
             src={item.image}

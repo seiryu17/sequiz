@@ -53,7 +53,7 @@ const ArticleDetail = () => {
           </Col>
           <Col className="text-center">
             <span>
-              By <b>{item.author.toUpperCase()}</b>
+              By <b>{item.author?.toUpperCase()}</b>
             </span>
           </Col>
         </Row>
