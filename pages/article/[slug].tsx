@@ -32,9 +32,14 @@ const ArticleDetail = () => {
           sizes="100vw"
         />
         <Row
-          style={{ bottom: 0, left: 0, borderRadius: "0px 10px 0px 10px" }}
+          style={{
+            flexDirection: "column",
+            bottom: 0,
+            left: 0,
+            borderRadius: "0px 10px 0px 10px",
+          }}
           justify="center"
-          className="position-absolute bg-white p-2"
+          className={`position-absolute bg-white ${mq.xs ? "p-1" : "p-2"}`}
         >
           <Col>
             <span>
@@ -46,7 +51,7 @@ const ArticleDetail = () => {
               })}
             </span>
           </Col>
-          <Col className="text-center" span={24}>
+          <Col className="text-center">
             <span>
               By <b>{item.author.toUpperCase()}</b>
             </span>

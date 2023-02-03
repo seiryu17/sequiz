@@ -6,6 +6,7 @@ import ArticleList from "../article/list";
 import MENUS from "../../../src/constant/categories.json";
 import { useRouter } from "next/router";
 import ARTICLES from "@/src/constant/articles.json";
+import { MenuOutlined } from "@ant-design/icons";
 
 const { useBreakpoint } = Grid;
 
@@ -72,7 +73,7 @@ const Layout = (props: IProps) => {
             </Row>
           </Col>
         ) : (
-          "as"
+          <MenuOutlined className="use-pointer" style={{ fontSize: 30 }} />
         )}
       </Row>
       <main className={mq.xs ? "p-2" : mq.lg ? "ph-14" : "ph-8"}>
