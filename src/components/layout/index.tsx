@@ -6,7 +6,6 @@ import ArticleList from "../article/list";
 import MENUS from "../../../src/constant/categories.json";
 import { useRouter } from "next/router";
 import ARTICLES from "@/src/constant/articles.json";
-import IArticle from "@/src/interfaces/models/article";
 
 const { useBreakpoint } = Grid;
 
@@ -76,7 +75,7 @@ const Layout = (props: IProps) => {
           "as"
         )}
       </Row>
-      <main className={mq.xs ? "p-4" : mq.lg ? "ph-14" : "ph-8"}>
+      <main className={mq.xs ? "p-2" : mq.lg ? "ph-14" : "ph-8"}>
         {children}
       </main>
       {preFooter && (

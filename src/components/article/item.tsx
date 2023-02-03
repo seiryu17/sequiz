@@ -21,18 +21,19 @@ const ArticleItem = (props: IProps) => {
     >
       <Col>
         <div
+          className="position-relative"
           style={{
             width: "100%",
             height: "auto",
-            position: "relative",
           }}
         >
           <Image
+            sizes="(max-width: 576px) 100vw,
+            50vw"
             alt="article-image"
             className="border-radius-12 article-image"
             src={item.image}
             fill
-            sizes="100vw"
           />
         </div>
       </Col>
