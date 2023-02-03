@@ -1,24 +1,29 @@
 import { Row } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import { Grid, Col, Typography, Image } from "antd";
 import ASSET from "@/src/constant/assets";
 import ArticleList from "../article/list";
 import MENUS from "../../../src/constant/categories.json";
 import { useRouter } from "next/router";
 import ARTICLES from "@/src/constant/articles.json";
+import IArticle from "@/src/interfaces/models/article";
 
 const { useBreakpoint } = Grid;
 
 interface IProps {
   children: React.ReactNode;
+  preFooter?: boolean;
 }
 
 const Layout = (props: IProps) => {
-  const { children } = props;
-  const [isActive, setIsActive] = useState();
+  const { children, preFooter = true } = props;
   const mq = useBreakpoint();
   const router = useRouter();
+  const slug = router.query.slug;
   const filterId = parseInt(router.query.filter as string);
+  const detailItem = ARTICLES.data.find(
+    (x) => x.id === parseInt(slug as string)
+  );
   const data = ARTICLES.data.filter((x) => x.is_featured).slice(0, 3);
   return (
     <>
@@ -37,7 +42,9 @@ const Layout = (props: IProps) => {
               <Col span={8}>
                 <Typography.Title
                   onClick={() => router.push("/")}
-                  className={`menu-title ${!filterId ? "active" : ""}`}
+                  className={`menu-title ${
+                    !filterId && !detailItem ? "active" : ""
+                  }`}
                   level={mq.lg ? 4 : 5}
                 >
                   All Articles
@@ -46,9 +53,11 @@ const Layout = (props: IProps) => {
               {MENUS.data.map((x, index) => (
                 <Col key={index} span={8}>
                   <Typography.Title
-                    onClick={() => router.push(`?filter=${x.id}`)}
+                    onClick={() => router.push(`/?filter=${x.id}`)}
                     className={`menu-title ${
-                      filterId === x.id ? "active" : ""
+                      filterId === x.id || detailItem?.categories.id === x.id
+                        ? "active"
+                        : ""
                     }`}
                     level={mq.lg ? 4 : 5}
                   >
@@ -70,25 +79,28 @@ const Layout = (props: IProps) => {
       <main className={mq.xs ? "p-4" : mq.lg ? "ph-14" : "ph-8"}>
         {children}
       </main>
-      <Row className={`bg-black ${mq.xs ? "p-4" : "p-6"}  mt-6`}>
-        <Col span={24} className="text-center mb-2">
-          <Typography.Title
-            className={`text-color-white ${
-              mq.xs ? "text-size-36" : "text-size-60"
-            }  m-0`}
-          >
-            Empowering Minds
-          </Typography.Title>
-        </Col>
-        <Col span={24} className="text-center">
-          <Typography.Title level={3} className="text-color-grey">
-            Insights and Strategies for Personal and Professional Growth
-          </Typography.Title>
-        </Col>
-        <Col className="text-center mt-4">
-          <ArticleList footer list={data} />
-        </Col>
-      </Row>
+      {preFooter && (
+        <Row className={`bg-black ${mq.xs ? "p-4" : "p-6"}  mt-6`}>
+          <Col span={24} className="text-center mb-2">
+            <Typography.Title
+              className={`text-color-white ${
+                mq.xs ? "text-size-36" : "text-size-60"
+              }  m-0`}
+            >
+              Empowering Minds
+            </Typography.Title>
+          </Col>
+          <Col span={24} className="text-center">
+            <Typography.Title level={3} className="text-color-grey">
+              Insights and Strategies for Personal and Professional Growth
+            </Typography.Title>
+          </Col>
+          <Col className="text-center mt-4">
+            <ArticleList footer list={data} />
+          </Col>
+        </Row>
+      )}
+
       <Row
         className="bg-light-grey pv-4 ph-8 w-100"
         justify={`${mq.xs ? "center" : "space-between"}`}

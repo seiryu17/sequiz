@@ -76,6 +76,8 @@ body {
 .make-space(@name: 10, @value:10);
 .make-space(@name: 12, @value:12);
 .make-space(@name: 14, @value:14);
+.make-space(@name: 16, @value:16);
+.make-space(@name: 18, @value:18);
 
 @borders-radius: 2, 4, 8, 12, 20;
 each(@borders-radius, {
@@ -113,10 +115,24 @@ each(@colors, {
   }
 });
 
-@sizes: 8, 12, 16, 18, 32, 48, 60;
+@sizes: 8, 12, 16, 18, 20, 24, 32, 48, 60;
 each(@sizes, {
   .text-size-@{value} {
     font-size: ~"@{value}px" !important;
+  }
+});
+
+@font-weights: {
+  regular: 400;
+  medium: 600;
+  semibold: 600;
+  bold: 700;
+};
+each(@font-weights, {
+  .text-weight-@{key} {
+    font-family: @font-family;
+    font-weight: @value !important;
+    letter-spacing: -0.006em;
   }
 });
 
@@ -132,6 +148,31 @@ each(@sizes, {
   text-align: center;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .article-image {
   position: relative !important;
+}
+
+.detail-article-image {
+  position: relative !important;
+  height: auto;
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.position-relative {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .detail-article-image {
+    position: relative !important;
+    height: 600px !important;
+    object-fit: cover;
+  }
 }
