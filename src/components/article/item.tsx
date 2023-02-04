@@ -1,3 +1,4 @@
+import ASSET from "@/src/constant/assets";
 import IArticle from "@/src/interfaces/models/article";
 import { Col, Row, Typography } from "antd";
 import Image from "next/image";
@@ -27,6 +28,7 @@ const ArticleItem = (props: IProps) => {
               alt="article-image"
               className="border-radius-12 article-image"
               src={item.image}
+              blurDataURL={ASSET.LOGO_HORIZONTAL}
               fill
               priority
             />
