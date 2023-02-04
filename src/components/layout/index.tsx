@@ -128,7 +128,7 @@ const Layout = (props: IProps) => {
                 } text-color-orange`}
               >
                 The more that you read, the more things you will know. The more
-                that you learn, the more places you'll go.{" "}
+                that you learn, the more places you&apos;ll go.{" "}
                 <p className="text-color-white">
                   Created by the <u>Innovation Lab</u> for testing web
                   development skills.
