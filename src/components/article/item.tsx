@@ -28,6 +28,7 @@ const ArticleItem = (props: IProps) => {
               className="border-radius-12 article-image"
               src={item.image}
               fill
+              priority
             />
           </div>
         </Col>

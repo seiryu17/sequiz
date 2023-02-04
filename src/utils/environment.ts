@@ -1,5 +1,5 @@
 const env = process.env.APP_ENV || "local";
-
+console.log(env);
 const CONFIGS = {
   LOCAL: {
     API_URL: "",
