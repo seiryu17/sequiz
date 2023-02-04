@@ -1,6 +1,6 @@
 import Layout from "@/src/components/layout";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React from "react";
 import ARTICLES from "@/src/constant/articles.json";
 import IArticle from "@/src/interfaces/models/article";
@@ -81,5 +81,22 @@ const ArticleDetail = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps(ctx: any) {
+  const item = ARTICLES.data.find(
+    (x) => x.id === parseInt(ctx.query.slug as string)
+  );
+  if (!item) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default ArticleDetail;
